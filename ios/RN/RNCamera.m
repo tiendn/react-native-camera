@@ -620,7 +620,9 @@ static NSDictionary *defaultFaceDetectorOptions = nil;
         // Default video quality AVCaptureSessionPresetHigh if non is provided
         AVCaptureSessionPreset preset = ([self defaultVideoQuality]) ? [RNCameraUtils captureSessionPresetForVideoResolution:[[self defaultVideoQuality] integerValue]] : AVCaptureSessionPresetHigh;
 
-        self.session.sessionPreset = preset == AVCaptureSessionPresetHigh ? AVCaptureSessionPresetPhoto: preset;
+        // self.session.sessionPreset = preset == AVCaptureSessionPresetHigh ? AVCaptureSessionPresetPhoto: preset;
+        // https://github.com/react-native-community/react-native-camera/issues/1870#issuecomment-452788709
+        self.session.sessionPreset = AVCaptureSessionPresetHigh
 
         AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
         if ([self.session canAddOutput:stillImageOutput]) {
